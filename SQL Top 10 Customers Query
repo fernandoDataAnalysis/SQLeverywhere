@@ -1,0 +1,25 @@
+##Top 10 Customers Query						
+						
+SELECT A. customer_id, A.first_name, A.last_name, C.city, D.country,						
+SUM (E. amount) AS total_amount_paid						
+FROM customer A						
+INNER JOIN address B ON A.address_id = B.address_id						
+INNER JOIN city C ON B.city_id = C.city_id						
+INNER JOIN country D ON C.country_ID = D.country_ID						
+INNER JOIN payment E ON A.customer_id = E.customer_id						
+GROUP BY A.customer_id, C.city, D. country						
+ORDER BY total_amount_paid DESC						
+LIMIT 10;						
+
+Output:
+customer_id	first_name	last_name	city	country	total_amount_paid
+148	Eleanor	Hunt	Saint-Denis	Runion	211.55
+526	Karl	Seal	Cape Coral	United States	208.58
+178	Marion	Snyder	Santa Brbara dOeste	Brazil	194.61
+137	Rhonda	Kennedy	Apeldoorn	Netherlands	191.62
+144	Clara	Shaw	Molodetno	Belarus	189.6
+459	Tommy	Collazo	Qomsheh	Iran	183.63
+181	Ana	Bradley	Memphis	United States	167.67
+410	Curtis	Irby	Richmond Hill	Canada	167.62
+236	Marcia	Dean	Tanza	Philippines	166.61
+403	Mike	Way	Valparai	India	162.67
