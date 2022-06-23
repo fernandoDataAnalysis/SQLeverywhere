@@ -1,0 +1,14 @@
+##SQL querie to filter the top 10 movies by revenue
+
+SELECT A.title, SUM(D.amount) AS total_payment				
+FROM film A				
+INNER JOIN inventory B				
+	ON A.film_id = B.film_id			
+INNER JOIN rental C				
+	ON B.inventory_id = C.inventory_id			
+INNER JOIN payment D				
+	On C.rental_id = D. rental_id			
+GROUP BY A.title				
+ORDER BY total_payment DESC				
+LIMIT 10;				
+				
