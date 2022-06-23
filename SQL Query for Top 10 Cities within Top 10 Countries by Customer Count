@@ -1,0 +1,29 @@
+###Query for Top 10 Cities within Top 10 Countries by Customer Count									
+									
+SELECT 	C.city,								
+	D.country,								
+      	COUNT(A.customer_id) AS customer_count								
+FROM customer A									
+INNER JOIN address B ON A.address_id = B.address_id									
+INNER JOIN city C ON B.city_id = C.city_id									
+INNER JOIN country D ON C.country_id = D.country_id									
+WHERE country IN('India', 'China', 'United States', 'Japan', 'Mexico', 'Brazil',									
+				 'Russian Federation', 'Phillipines', 'Turkey', 'Indonesia')					
+GROUP BY city,									
+	country								
+ORDER BY customer_count DESC									
+LIMIT 10;									
+
+Top 10 Cities within Top 10 Countries by Customer Count		
+		
+city	              country	              customer_count
+Aurora	            United States	               2
+Pingxiang	          China	                       1
+Sivas	              Turkey	                     1
+Dhule (Dhulia)	    India	                       1
+Kurashiki	          Japan	                       1 
+Xintai	            China	                       1
+Adoni	              India	                       1
+Celaya	            Mexico	                     1
+Nezahualcyotl	      Mexico	                     1
+Atlixco	            Mexico	                     1
