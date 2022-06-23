@@ -1,0 +1,20 @@
+Query for Count of Films by Rating									
+									
+SELECT A.rating AS rating, COUNT(A.film_id) AS count_of_films, SUM(E.amount) AS total_film_revenue									
+FROM film A									
+INNER JOIN film_category B ON A.film_id = B.film_id									
+INNER JOIN category C ON B.category_id = C.category_id									
+INNER JOIN inventory F ON A.film_id = F.film_id									
+INNER JOIN rental D ON F.inventory_id = D.inventory_id									
+INNER JOIN payment E ON D.rental_id = E.rental_id									
+GROUP BY A. rating									
+ORDER BY total_film_revenue DESC;									
+									
+Output:
+rating	count_of_films	total_film_revenue
+PG-13	3245	13855.56
+NC-17	3008	12634.92
+PG	2938	12236.65
+R	2897	12073.03
+G	2508	10511.88
+
