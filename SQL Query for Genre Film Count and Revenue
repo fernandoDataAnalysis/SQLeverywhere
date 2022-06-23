@@ -1,0 +1,30 @@
+##Query for Genre Film Count and Revenue									
+									
+SELECT C.name AS genre, COUNT(A.film_id) AS count_of_films, SUM(E.amount) AS total_film_revenue									
+FROM film A									
+INNER JOIN film_category B ON A.film_id = B.film_id									
+INNER JOIN category C ON B.category_id = C.category_id									
+INNER JOIN inventory F ON A.film_id = F.film_id									
+INNER JOIN rental D ON F.inventory_id = D.inventory_id									
+INNER JOIN payment E ON D.rental_id = E.rental_id									
+GROUP BY C.name									
+ORDER BY total_film_revenue DESC;									
+									
+Output:
+genre	count_of_films	total_film_revenue
+Sports	1081	4892.19
+Sci-Fi	998	4336.01
+Animation	1065	4245.31
+Drama	953	4118.46
+Comedy	851	4002.48
+New	864	3966.38
+Action	1013	3951.84
+Foreign	953	3934.47
+Games	884	3922.18
+Family	988	3830.15
+Documentary	937	3749.65
+Horror	773	3401.27
+Classics	860	3353.38
+Children	861	3309.39
+Travel	765	3227.36
+Music	750	3071.52
